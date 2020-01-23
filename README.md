@@ -6,7 +6,9 @@ Son utilisation est gratuite, mais peut prendre plusieurs semaines à mettre en 
 
 ## Contribution
 
-Ce dépôt est proposé par le collectif des [consometers](https://www.consometers.org/) pour partager notre expérience et échanger avec d’autres utilisateurs. N’hésitez pas à ouvrir une [Issue](https://github.com/consometers/data-connect/issues) pour suggérer une modification ou échanger sur Data Connect.
+À notre connaissance, il n’existe pas un endroit permettant aux utilisateurs de Data Connect d’échanger leurs expériences, n’hésitez pas à ouvrir une [Issue](https://github.com/consometers/data-connect/issues) pour suggérer une modification, faire remonter un problème ou poser une question.
+
+Ce dépôt est proposé par le collectif des [Consometers](https://www.consometers.org/), nous utilisons actuellement Data Connect pour [Quoalise](https://wiki.consometers.org/doku.php?id=projets:quoalise), un projet d’échange de données en fédération. Un historique plus complet sur nos démarches en rapport avec Data Connect est disponible sur notre [Wiki](https://wiki.consometers.org/doku.php?id=projets:dataconnect).
 
 ## Utilisation
 
