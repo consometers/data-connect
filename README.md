@@ -76,7 +76,7 @@ Authorization: Bearer 7tT7xon48xnhxSWnBX5FzuoiEUWm2hApyf1lmqeDlHyU2oqcCv84xf
 La première fois il sera obtenu à partir du  `code` récupéré après le consentement de l’utilisateur.
 
 ```
-curl -d "grant_type=authorization_code&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd014a1&client_secret=d7ee309e-8ae2-429c-96d0-d7ab99800a22&code=ZS5454hkfa47w7wkAwqQ9GrtUWwooL" -X POST "https://gw.prd.api.enedis.fr/v1/oauth2/token?redirect_uri=https%3A%2F%2Fvotre-app.fr%2Fdataconnect%2Fredirect"
+curl -L -d "grant_type=authorization_code&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd014a1&client_secret=d7ee309e-8ae2-429c-96d0-d7ab99800a22&code=ZS5454hkfa47w7wkAwqQ9GrtUWwooL" -X POST "https://gw.prd.api.enedis.fr/v1/oauth2/token?redirect_uri=https%3A%2F%2Fvotre-app.fr%2Fdataconnect%2Fredirect"
 ```
 
 | Paramètre | Description |
@@ -103,7 +103,7 @@ curl -d "grant_type=authorization_code&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd
 Un `access_token` expiré sera renouvelé grâce au `refresh_token` :
 
 ```
-curl -d "grant_type=refresh_token&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd014a1&client_secret=d7ee309e-8ae2-429c-96d0-d7ab99800a22&refresh_token=2r9UcExfnH9WAnl6sM4T2rxYrYOW2sKjPcx8uWnrcgXvU3" -X POST "https://gw.prd.api.enedis.fr/v1/oauth2/token?redirect_uri=https%3A%2F%2Fvotre-app.fr%2Fdataconnect%2Fredirect"
+curl -L -d "grant_type=refresh_token&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd014a1&client_secret=d7ee309e-8ae2-429c-96d0-d7ab99800a22&refresh_token=2r9UcExfnH9WAnl6sM4T2rxYrYOW2sKjPcx8uWnrcgXvU3" -X POST "https://gw.prd.api.enedis.fr/v1/oauth2/token?redirect_uri=https%3A%2F%2Fvotre-app.fr%2Fdataconnect%2Fredirect"
 ```
 
 ## Accès aux données
