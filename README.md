@@ -18,7 +18,7 @@ Data Connect permet à une application de :
 - Accéder aux données de consommations d’un utilisateur équipé d’un compteur Linky.
 - Accéder aux informations contractuelles du consommateur, comme son identité, ses coordonnées, le type de compteur ou la puissance souscrite.
 
-Un certain nombre de limitations peuvent être trop contraignantes pour votre application. C‘est notamment le cas si vous voulez accéder à vos propres données de consommation, qui pourraient être récupérées plus simplement dans votre espace client Enedis. D’autres moyens sont proposée par Enedis pour [accéder aux données de mesure](https://www.enedis.fr/acceder-aux-donnees-de-mesure).
+Un certain nombre de limitations peuvent être trop contraignantes pour votre application. C‘est notamment le cas si vous voulez accéder à vos propres données de consommation, qui pourraient être récupérées plus simplement dans votre espace client Enedis. D’autres moyens sont proposés par Enedis pour [accéder aux données de mesure](https://www.enedis.fr/acceder-aux-donnees-de-mesure).
 
 ## Limitations
 
@@ -26,7 +26,6 @@ Un certain nombre de limitations peuvent être trop contraignantes pour votre ap
 - L’enregistrement d’une application nécessite un numéro de SIRET et la signature d’un contrat avec Enedis.
 - L’application doit être développée en mode « bac à sable » et implémenter un parcours client conforme avant de pouvoir accéder à des données réelles.
 - Il n’est pas possible de récupérer une consommation « instantanée », le pas de mesure le plus fin est de 30 min.
-- Il n’est pour le moment pas possible d’accéder aux données de productions.
 
 ## Recueil du consentement de l’utilisateur
 
@@ -73,7 +72,7 @@ Authorization: Bearer 7tT7xon48xnhxSWnBX5FzuoiEUWm2hApyf1lmqeDlHyU2oqcCv84xf
 
 ### Juste après le consentement
 
-La première fois il sera obtenu à partir du  `code` récupéré après le consentement de l’utilisateur.
+La première fois il sera obtenu à partir du `code` récupéré après le consentement de l’utilisateur.
 
 ```
 curl -L -d "grant_type=authorization_code&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd014a1&client_secret=d7ee309e-8ae2-429c-96d0-d7ab99800a22&code=ZS5454hkfa47w7wkAwqQ9GrtUWwooL" -X POST "https://gw.prd.api.enedis.fr/v1/oauth2/token?redirect_uri=https%3A%2F%2Fvotre-app.fr%2Fdataconnect%2Fredirect"
@@ -84,7 +83,7 @@ curl -L -d "grant_type=authorization_code&client_id=ae632d42-91b8-4ce9-b0d4-8438
 | `code` | Récupéré après le consentement de l’utilisateur.<br/>Ex. `ZS5454hkfa47w7wkAwqQ9GrtUWwooL`. |
 | `client_id` | Identifiant de votre application.<br/>Ex. `ae632d42-91b8-4ce9-b0d4-8438ecd014a1`. |
 | `client_secret` | Authentifie l’application, secret envoyé lors de l’enregistrement de votre application.<br/>Ex. `d7ee309e-8ae2-429c-96d0-d7ab99800a22`. |
-| `redirect_uri` | Adresse de rediretion configurée pour votre application.<br/>Ex. `https://votre-app.fr/dataconnect/redirect`. |
+| `redirect_uri` | Adresse de redirection configurée pour votre application.<br/>Ex. `https://votre-app.fr/dataconnect/redirect`. |
 
 ```json
 {
@@ -113,7 +112,7 @@ curl -L -d "grant_type=refresh_token&client_id=ae632d42-91b8-4ce9-b0d4-8438ecd01
 - Puissances moyennes de consommation sur des tranches de 30 minutes
 - 7 jours consécutifs au maximum
 - La valeur portant le numéro 1 correspond à la puissance moyenne mesurée entre minuit et minuit trente le premier jour.
-- La valeur portant le numéro le plus élevé correspond à la puissance moyenne mesurée entre 23h30.
+- La valeur portant le numéro le plus élevé correspond à la puissance moyenne mesurée entre 23h30 et minuit le dernier jour.
 
 ```
 curl -H 'Accept: application/json' -H 'Authorization: Bearer 7tT7xon48xnhxSWnBX5FzuoiEUWm2hApyf1lmqeDlHyU2oqcCv84xf' 'https://gw.prd.api.enedis.fr/v3/metering_data/consumption_load_curve?start=2019-12-01&end=2019-12-05&usage_point_id=22516914714270'
@@ -161,3 +160,5 @@ curl -H 'Accept: application/json' -H 'Authorization: Bearer 7tT7xon48xnhxSWnBX5
 
 - [BeMyHomeSmart](https://github.com/gelleouet/smarthome-application/), par Gregory Elleouet, [utilise l’API](https://github.com/gelleouet/smarthome-application/search?q=DataConnect&unscoped_q=DataConnect) en production.
 - [Exemple Python](examples/dataconnect.py), par Gautier Husson, utilisation de l’environnement bac à sable.
+- [Exemple Node-red](https://framagit.org/JaXoM_99/dataconnect-nodered/) par Jaxom des Consometers, utilisation du bac à sable v4.
+
