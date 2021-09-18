@@ -20,6 +20,8 @@ Data Connect permet à une application de :
 
 Un certain nombre de limitations peuvent être trop contraignantes pour votre application. C‘est notamment le cas si vous voulez accéder à vos propres données de consommation, qui pourraient être récupérées plus simplement dans votre espace client Enedis. D’autres moyens sont proposés par Enedis pour [accéder aux données de mesure](https://www.enedis.fr/acceder-aux-donnees-de-mesure).
 
+Ici vous pouvez vous familiariser avec l'API : [découvrir l'API](https://datahub-enedis.fr/data-connect/ressources/decouvrir/).
+
 ## Limitations
 
 - L’utilisateur doit être équipé d’un compteur Linky, raccordé avec une puissance inférieure à 36 kVA.
