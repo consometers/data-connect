@@ -10,17 +10,15 @@ import requests
 import json
 import re
 import sys
-if ((3, 0) <= sys.version_info <= (3, 9)):
-    import urllib.parse as urlparse
-elif ((2, 0) <= sys.version_info <= (2, 9)):
-    import urlparse 
+import os
+from urllib import parse as urlparse
 
 
-
-
-client_id = 'changeme'
-client_secret = 'changeme'
-redirect_uri = 'changeme'
+# Before launch this script you must export your credentials
+print(f"{os.environ['client_id']}\n{os.environ['redirect_uri']}")
+client_id = os.environ['client_id']
+client_secret = os.environ['client_secret']
+redirect_uri = os.environ['redirect_uri']
 
 
 authorize_url = "https://gw.hml.api.enedis.fr/group/espace-particuliers/consentement-linky/oauth2/authorize"
@@ -118,10 +116,9 @@ endpoint_token_returned_json = json.loads(http_return.text)
 print("################################################################################")
 print("# Request data : consumption max power #########################################")
 print("################################################################################")
-start_date = '2019-04-23'
-end_date = '2019-04-24'
-metering_data_api_path = '/v3/metering_data/consumption_max_power'
-#metering_data_api_path = '/v3/metering_data/consumption_max_power'
+start_date = '2021-09-14'
+end_date = '2021-09-15'
+metering_data_api_path = f'/v4/metering_data/daily_consumption_max_power'
 request_url = metering_data_base_url + metering_data_api_path
 token_type = endpoint_token_returned_json['token_type']
 token = endpoint_token_returned_json['access_token']
@@ -156,10 +153,46 @@ print(http_return.text)
 print("################################################################################")
 print("# Request data : consumption load curve ########################################")
 print("################################################################################")
-start_date = '2019-04-23'
-end_date = '2019-04-24'
-metering_data_api_path = '/v3/metering_data/consumption_load_curve'
-#metering_data_api_path = '/v3/metering_data/consumption_max_power'
+start_date = '2021-09-14'
+end_date = '2021-09-15'
+metering_data_api_path = '/v4/metering_data/consumption_load_curve'
+request_url = metering_data_base_url + metering_data_api_path
+token_type = endpoint_token_returned_json['token_type']
+token = endpoint_token_returned_json['access_token']
+
+req_head = {
+           'Accept': 'application/json',
+           'Authorization': token_type + ' ' + token
+           }
+
+req_params = {
+           'start': start_date,
+           'end': end_date,
+           'usage_point_id':callback_usage_point_id
+           }
+
+# Forge and print request
+http_request = requests.Request("GET", request_url, headers=req_head, params=req_params)
+http_request_prepared = http_request.prepare()
+pretty_print_request(http_request_prepared)
+
+# Send request
+http_session = requests.Session()
+http_return = http_session.send(http_request_prepared)
+
+# Print request result
+print(http_return.status_code)
+print(http_return.text)
+#print(http_return.json)
+
+
+
+print("################################################################################")
+print("# Request data : daily consumption ########################################")
+print("################################################################################")
+start_date = '2021-09-14'
+end_date = '2021-09-15'
+metering_data_api_path = f'/v4/metering_data/daily_consumption'
 request_url = metering_data_base_url + metering_data_api_path
 token_type = endpoint_token_returned_json['token_type']
 token = endpoint_token_returned_json['access_token']
